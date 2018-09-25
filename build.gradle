@@ -1,0 +1,14 @@
+buildscript {
+   repositories {
+       mavenCentral()
+   }
+}
+
+group = 'de.powerproject'
+version = '0.0.1-SNAPSHOT'
+
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}

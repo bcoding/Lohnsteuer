@@ -1,0 +1,44 @@
+import de.powerproject.lohnpap.generator.Generator
+import de.powerproject.lohnpap.generator.Generator
+
+plugins {
+    id 'java'
+    id 'io.franzbecker.gradle-lombok' version '1.14'
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+def generatedSrcDir = java.nio.file.Paths.get(buildDir.getCanonicalPath(), "generated/pap/src/main/java/")
+
+task generatePapFiles << {
+    generatedSrcDir.toFile().mkdirs()
+    Generator.generatePapFiles(generatedSrcDir)
+}
+
+build.dependsOn generatePapFiles
+
+dependencies {
+}
+
+lombok {
+    // buildDir = generatedSrcDir
+    sha256 = "" // skip verifyLombok task
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs += generatedSrcDir.toFile().getCanonicalPath()
+            srcDirs += "src/main/java/"
+        }
+    }
+}

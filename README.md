@@ -35,6 +35,29 @@ Verfügbare Rechner
  - <a target="_blank" href="http://www.bundesfinanzministerium.de/Content/DE/Downloads/Steuern/Steuerarten/Lohnsteuer/Programmablaufplan/010_PAP_2007_a.pdf?__blob=publicationFile&v=3">Programmablaufplan 2007 (PDF 151 KB)</a>
  - <a target="_blank" href="http://www.bundesfinanzministerium.de/Content/DE/Downloads/Steuern/Steuerarten/Lohnsteuer/Programmablaufplan/006_PAP_2006_a.pdf?__blob=publicationFile&v=3">Programmablaufplan 2006 (PDF 195 KB)</a>
 
+<h3>Neue Pseudocode-Dateien einspielen</h3>
+
+Eine neue XML-Datei muss nach buildSrc/src/main/resources kopiert und unter
+
+    buildSrc/src/main/java/de/powerproject/lohnpap/generator/Generator.java eingetragen
+Religionsgemeinschaftwerden.
+
+Anscheinend hatten die Beamten Probleme, konsistentes XML auszuliefern. Die Datein vor
+2015 mussten angepasst werden, um das Parsing zu vereinfachen: Es gab eine Mischung
+zwischen
+
+    <IF><THEN></THEN><ELSE></ELSE></IF>
+    
+und
+
+    <IF><THEN></THEN></IF><ELSE></ELSE>
+    
+Eine Suche nach dem reg. Ausdruck
+
+    </IF>[^<]+<ELSE
+    
+gibt schnell Aufschluss über diese Inkonsistenz.
+
 <h3>Lizenzinformation</h3>
 
     Copyright 2015-2016 Marcel Lehmann

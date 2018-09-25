@@ -1,0 +1,14 @@
+plugins {
+    id 'java'
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.github.javaparser:javaparser-core:3.6.22'
+    compile 'com.github.javaparser:javaparser-core-generators:3.6.22'
+}
